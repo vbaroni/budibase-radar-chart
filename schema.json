@@ -18,16 +18,6 @@
             "required": true
           },
           {
-            "type": "select",
-            "label": "Categories and fields selection method",
-            "key": "selectionMethod",
-            "required": true,
-            "options": [
-              {"label":"list of numeric fields","value":"list_fields"}
-             ,{"label":"category and numeric value fields","value": "category_value_fields"}
-            ]
-          },
-          {
             "type": "field",
             "label": "Serie field",
             "key": "serieField",
@@ -35,220 +25,89 @@
           },
           {
             "type": "field",
-            "label": "Category field",
-            "key": "categoryField",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "category_value_fields"
-            }
-          },
-          {
-            "type": "field",
-            "label": "Value field",
-            "key": "valueField",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "category_value_fields"
-            }            
-          },
-          {
-            "type": "select",
-            "label": "Aggregation method if several values for one category",
-            "key": "aggregationMethod",
-            "required": true,
-            "options": ["min","max","first","last"],
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "category_value_fields"
-            }            
-          },
-          {
-            "type": "field",
             "label": "Value field 1",
             "key": "valueField1",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "required": true
           },
           {
             "type": "text",
             "label": "Label field 1",
             "key": "labelField1",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "required": true
           },
           {
             "type": "field",
             "label": "Value field 2",
             "key": "valueField2",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "required": true
           },
           {
             "type": "text",
             "label": "Label field 2",
             "key": "labelField2",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "required": true
           },
           {
             "type": "field",
             "label": "Value field 3",
             "key": "valueField3",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "required": true
           },
           {
             "type": "text",
             "label": "Label field 3",
             "key": "labelField3",
-            "required": true,
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "required": true
           },
           {
             "type": "field",
             "label": "Value field 4",
-            "key": "valueField4",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "valueField4"
           },
           {
             "type": "text",
             "label": "Label field 4",
-            "key": "labelField4",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "labelField4"
           },
           {
             "type": "field",
             "label": "Value field 5",
-            "key": "valueField5",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "valueField5"
           },
           {
             "type": "text",
             "label": "Label field 5",
-            "key": "labelField5",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "labelField5"
           },
           {
             "type": "field",
             "label": "Value field 6",
-            "key": "valueField6",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "valueField6"
           },
           {
             "type": "text",
             "label": "Label field 6",
-            "key": "labelField6",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "labelField6"
           },
           {
             "type": "field",
             "label": "Value field 7",
-            "key": "valueField7",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "valueField7"
           },
           {
             "type": "text",
             "label": "Label field 7",
-            "key": "labelField7",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "labelField7"
           },
           {
             "type": "field",
             "label": "Value field 8",
-            "key": "valueField8",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "valueField8"
           },
           {
             "type": "text",
             "label": "Label field 8",
-            "key": "labelField8",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
-          },
-          {
-            "type": "field",
-            "label": "Value field 9",
-            "key": "valueField9",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
-          },
-          {
-            "type": "text",
-            "label": "Label field 9",
-            "key": "labelField9",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
-          },
-          {
-            "type": "field",
-            "label": "Value field 10",
-            "key": "valueField10",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
-          },
-          {
-            "type": "text",
-            "label": "Label field 10",
-            "key": "labelField10",
-            "dependsOn": {
-              "setting": "selectionMethod",
-              "value": "list_fields"
-            }            
+            "key": "labelField8"
           }
         ]
       },
@@ -268,14 +127,14 @@
             "label": "Chart width",
             "key": "chartWidth",
             "info": "If left null, width will be 100%"
-          },          
+          },
           {
             "type": "text",
             "label": "Chart title",
             "key": "chartTitle"
           }
         ]
-      },      
+      },
       {
         "section": true,
         "name": "Radar axis definition",
@@ -296,7 +155,7 @@
             "key": "axisTickAmount"
           }
         ]
-      },      
+      },
       {
         "section": true,
         "name": "Advanced options",
@@ -319,7 +178,18 @@
             "key": "colorPalette",
             "required": true,
             "default": "1",
-            "options": ["palette1","palette2","palette3","palette4","palette5","palette6","palette7","palette8","palette9","palette10"]
+            "options": [
+              "palette1",
+              "palette2",
+              "palette3",
+              "palette4",
+              "palette5",
+              "palette6",
+              "palette7",
+              "palette8",
+              "palette9",
+              "palette10"
+            ]
           }
         ]
       }
