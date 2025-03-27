@@ -25,12 +25,6 @@
           },
           {
             "type": "text",
-            "label": "Row to display",
-            "key": "filter",
-            "required": true
-          },
-          {
-            "type": "text",
             "label": "Label average field",
             "key": "averageLabel",
             "required": true,

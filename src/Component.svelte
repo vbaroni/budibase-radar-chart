@@ -30,9 +30,8 @@
   export let colorPalette; //
   export let displayDataLabels; //
   export let advancedChartOptions; //
-  
-  export let filter;
-  export let averageLabel; 
+
+  export let averageLabel;
 
   const loading = getContext("loading");
   let canBeDisplayed = true;
@@ -91,45 +90,18 @@
     return labelName == null ? fieldName : labelName;
   }
 
-  // Handle data when rows retrieved
-  // function handleData(rows) {
-  //   if (rows) {
-  //     options.labels = [];
-  //     options.series = [];
-
-  //     for (const element of rows) {
-  //       // Manage labels
-  //       options.labels.push(nvl(labelField1, valueField1));
-  //       options.labels.push(nvl(labelField2, valueField2));
-  //       options.labels.push(nvl(labelField3, valueField3));
-  //       options.labels.push(nvl(labelField4, valueField4));
-  //       options.labels.push(nvl(labelField5, valueField5));
-  //       options.labels.push(nvl(labelField6, valueField6));
-  //       options.labels.push(nvl(labelField7, valueField7));
-  //       options.labels.push(nvl(labelField8, valueField8));
-
-  //       // Manage values
-  //       let values = [];
-  //       values.push(element[valueField1]);
-  //       values.push(element[valueField2]);
-  //       values.push(element[valueField3]);
-  //       values.push(element[valueField4]);
-  //       values.push(element[valueField5]);
-  //       values.push(element[valueField6]);
-  //       values.push(element[valueField7]);
-  //       values.push(element[valueField8]);
-
-  //       options.series.push({ name: element[serieField], data: values });
-  //     }
-  //   } else {
-  //     canBeDisplayed = false;
-  //     errorMessages.push("No data");
-  //   }
-  // }
-
   function handleDataWithFilter(rows) {
     if (rows) {
-      const filteredRow = rows.find((row) => row[serieField] === filter);
+      console.log(rows);
+
+      // Use the most recently created row
+      const filteredRow = rows.reduce(
+        (latest, row) =>
+          new Date(row.createdAt) > new Date(latest.createdAt) ? row : latest,
+        rows[0]
+      );
+
+      console.log(filteredRow);
 
       options.labels = [];
       options.series = [];
@@ -206,8 +178,10 @@
       averageValues.push(averageObject[valueField7]);
       averageValues.push(averageObject[valueField8]);
 
-      options.series.push({ name: averageObject[serieField], data: averageValues });
-
+      options.series.push({
+        name: averageObject[serieField],
+        data: averageValues,
+      });
     } else {
       canBeDisplayed = false;
       errorMessages.push("No data");
