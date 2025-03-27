@@ -30,6 +30,9 @@
   export let colorPalette; //
   export let displayDataLabels; //
   export let advancedChartOptions; //
+  
+  export let filter;
+  export let averageLabel; 
 
   const loading = getContext("loading");
   let canBeDisplayed = true;
@@ -89,35 +92,122 @@
   }
 
   // Handle data when rows retrieved
-  function handleData(rows) {
+  // function handleData(rows) {
+  //   if (rows) {
+  //     options.labels = [];
+  //     options.series = [];
+
+  //     for (const element of rows) {
+  //       // Manage labels
+  //       options.labels.push(nvl(labelField1, valueField1));
+  //       options.labels.push(nvl(labelField2, valueField2));
+  //       options.labels.push(nvl(labelField3, valueField3));
+  //       options.labels.push(nvl(labelField4, valueField4));
+  //       options.labels.push(nvl(labelField5, valueField5));
+  //       options.labels.push(nvl(labelField6, valueField6));
+  //       options.labels.push(nvl(labelField7, valueField7));
+  //       options.labels.push(nvl(labelField8, valueField8));
+
+  //       // Manage values
+  //       let values = [];
+  //       values.push(element[valueField1]);
+  //       values.push(element[valueField2]);
+  //       values.push(element[valueField3]);
+  //       values.push(element[valueField4]);
+  //       values.push(element[valueField5]);
+  //       values.push(element[valueField6]);
+  //       values.push(element[valueField7]);
+  //       values.push(element[valueField8]);
+
+  //       options.series.push({ name: element[serieField], data: values });
+  //     }
+  //   } else {
+  //     canBeDisplayed = false;
+  //     errorMessages.push("No data");
+  //   }
+  // }
+
+  function handleDataWithFilter(rows) {
     if (rows) {
+      const filteredRow = rows.find((row) => row[serieField] === filter);
+
       options.labels = [];
       options.series = [];
 
-      for (const element of rows) {
-        // Manage labels
-        options.labels.push(nvl(labelField1, valueField1));
-        options.labels.push(nvl(labelField2, valueField2));
-        options.labels.push(nvl(labelField3, valueField3));
-        options.labels.push(nvl(labelField4, valueField4));
-        options.labels.push(nvl(labelField5, valueField5));
-        options.labels.push(nvl(labelField6, valueField6));
-        options.labels.push(nvl(labelField7, valueField7));
-        options.labels.push(nvl(labelField8, valueField8));
+      // Manage labels
+      options.labels.push(nvl(labelField1, valueField1));
+      options.labels.push(nvl(labelField2, valueField2));
+      options.labels.push(nvl(labelField3, valueField3));
+      options.labels.push(nvl(labelField4, valueField4));
+      options.labels.push(nvl(labelField5, valueField5));
+      options.labels.push(nvl(labelField6, valueField6));
+      options.labels.push(nvl(labelField7, valueField7));
+      options.labels.push(nvl(labelField8, valueField8));
 
-        // Manage values
-        let values = [];
-        values.push(element[valueField1]);
-        values.push(element[valueField2]);
-        values.push(element[valueField3]);
-        values.push(element[valueField4]);
-        values.push(element[valueField5]);
-        values.push(element[valueField6]);
-        values.push(element[valueField7]);
-        values.push(element[valueField8]);
+      // Manage values
+      let values = [];
+      values.push(filteredRow[valueField1]);
+      values.push(filteredRow[valueField2]);
+      values.push(filteredRow[valueField3]);
+      values.push(filteredRow[valueField4]);
+      values.push(filteredRow[valueField5]);
+      values.push(filteredRow[valueField6]);
+      values.push(filteredRow[valueField7]);
+      values.push(filteredRow[valueField8]);
 
-        options.series.push({ name: element[serieField], data: values });
-      }
+      options.series.push({ name: filteredRow[serieField], data: values });
+
+      // CALCULATE AVERAGE
+      // Initialize an object for storing sums
+      const sum = {};
+      const count = {};
+      const fields = [
+        valueField1,
+        valueField2,
+        valueField3,
+        valueField4,
+        valueField5,
+        valueField6,
+        valueField7,
+        valueField8,
+      ];
+
+      // Initialize sum and count for each field
+      fields.forEach((field) => {
+        sum[field] = 0;
+        count[field] = 0;
+      });
+
+      // Sum the values for the hardcoded fields
+      rows.forEach((row) => {
+        fields.forEach((field) => {
+          if (field in row) {
+            sum[field] += row[field];
+            count[field] += 1;
+          }
+        });
+      });
+
+      // Compute the average for each field
+      let averageObject = { nom: averageLabel };
+      fields.forEach((field) => {
+        averageObject[field] = sum[field] / count[field];
+      });
+
+      console.log(options.labels);
+
+      let averageValues = [];
+      averageValues.push(averageObject[valueField1]);
+      averageValues.push(averageObject[valueField2]);
+      averageValues.push(averageObject[valueField3]);
+      averageValues.push(averageObject[valueField4]);
+      averageValues.push(averageObject[valueField5]);
+      averageValues.push(averageObject[valueField6]);
+      averageValues.push(averageObject[valueField7]);
+      averageValues.push(averageObject[valueField8]);
+
+      options.series.push({ name: averageObject[serieField], data: averageValues });
+
     } else {
       canBeDisplayed = false;
       errorMessages.push("No data");
@@ -129,7 +219,8 @@
     ? new Array(dataProvider?.limit > 16 ? 16 : dataProvider?.limit).fill({})
     : dataProvider?.rows;
   $: if (dataProvider?.rows && dataProvider?.rows.length > 0) {
-    handleData(dataProvider?.rows);
+    // handleData(dataProvider?.rows);
+    handleDataWithFilter(dataProvider?.rows);
   }
 </script>
 

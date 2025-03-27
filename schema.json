@@ -24,6 +24,19 @@
             "info": "If left null, there will only be one DEFAULT serie."
           },
           {
+            "type": "text",
+            "label": "Row to display",
+            "key": "filter",
+            "required": true
+          },
+          {
+            "type": "text",
+            "label": "Label average field",
+            "key": "averageLabel",
+            "required": true,
+            "defaultValue": "Moyenne"
+          },
+          {
             "type": "field",
             "label": "Value field 1",
             "key": "valueField1",
