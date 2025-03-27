@@ -134,7 +134,6 @@
 </script>
 
 {#if canBeDisplayed}
-  {console.log(options.series)}
   <div use:chart={options} />
 {:else}
   <!-- Display error message of bad configuration -->
